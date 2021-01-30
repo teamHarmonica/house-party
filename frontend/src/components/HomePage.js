@@ -1,55 +1,51 @@
-// import React,{ Component } from 'react';
-// import RoomJoinPage from './RoomJoinPage';
-// import CreateRoomPage from './CreateRoomPage';
-// import Room from "./Room";
-// import { Route } from 'react-router-dom';
+import React,{ Component } from 'react';
+import RoomJoinPage from './RoomJoinPage';
+import CreateRoomPage from './CreateRoomPage';
+import Room from "./Room";
+import { Grid, Button, ButtonGroup, Typography} from '@material-ui/core'
+import { Route } from 'react-router-dom';
 
-// export default class HomePage extends Component{
-//     constructor(props){
-//         super(props);
-//     }
-//     render(){
-//         return (
-//             <Router>
-//                 <Switch>
-//                     <Route exact path='/'></Route>
-//                     <Route path='/join' component={RoomJoinPage} />
-//                     <Route path='/create' component={CreateRoomPage} />
-//                      <Route path = '/room/:roomCode' component = {Room} />
-//                 </Switch>
-//             </Router>
-//         )
-//     }
-// }
+export default class HomePage extends Component{
+    constructor(props){
+        super(props);
+    }
 
+    
 
-import React, { Component } from "react";
-import RoomJoinPage from "./RoomJoinPage";
-import CreateRoomPage from "./CreateRoomPage";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
+    renderHomePage(){
+      return (
+        <Grid container spacing={3}>
+          <Grid item xs={12} align="center">
+            <Typography variant='h3' component="h3">
+              House Party
+            </Typography>
+          </Grid>
+          <Grid item xs={12} align="center">
+            <ButtonGroup disableElevation variant="contained" color="primary">
+              <Button color="primary" to="/join" component={Link}>
+                Join a Room
+              </Button>
+              <Button color="secondary" to="/create" component={Link}>
+                Create a Room
+              </Button>
+            </ButtonGroup>
+          </Grid>
 
-export default class HomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <p>This is the home page</p>
-          </Route>
-          <Route path="/join" component={RoomJoinPage} />
-          <Route path="/create" component={CreateRoomPage} />
-        </Switch>
-      </Router>
-    );
-  }
+        </Grid>
+      );
+    }
+    render(){
+        return (
+            <Router>
+                <Switch>
+                    <Route exact path='/'>
+                      {this.renderHomePage()}
+                    </Route>
+                    <Route path='/join' component={RoomJoinPage} />
+                    <Route path='/create' component={CreateRoomPage} />
+                     <Route path = '/room/:roomCode' component = {Room} />
+                </Switch>
+            </Router>
+        )
+    }
 }

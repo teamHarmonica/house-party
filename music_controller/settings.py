@@ -40,12 +40,15 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'frontend.apps.FrontendConfig',
-    'spotify.apps.SpotifyConfig'
+    'spotify.apps.SpotifyConfig',
+    'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -72,7 +75,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'music_controller.wsgi.application'
-
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:8000"
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

@@ -11,19 +11,24 @@ import {
   Redirect,
 } from "react-router-dom";
 import Info from "./Info";
-
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
-  typography: {
-    fontFamily: [
-      'Musicografi',
-    ].join(','),
-    allVariants: {
-      color: "White"
-    },
-  },});
-
+export const theme = createMuiTheme({
+  overrides: {
+    MuiTypography: {
+      root: {
+        "& h1": {
+          fontFamily: "Musicografi",
+          color: "White",
+          fontSize: 80,
+        },
+        "& h2": {
+          color: "White",
+        }
+      }
+    }
+  }
+});
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -48,21 +53,33 @@ export default class HomePage extends Component {
     return (
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
+          <ButtonGroup  disableElevation variant="contained" color="primary">
+            <Button style={{ backgroundColor: "#0d0e4a" }} to="" component={Link}>
+              Sign In
+            </Button>
+            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" }} to="" component={Link}>
+              Sign Up
+            </Button>
+          </ButtonGroup>
+        </Grid>
+        <Grid item xs={12} align="center">
         <ThemeProvider theme={theme}>
           <Typography variant="h3" compact="h3">
-            House Party
+            <h1>House Party</h1>
+            <h2><Info /></h2>
           </Typography>
         </ThemeProvider>
         </Grid>
+
         <Grid item xs={12} align="center">
           <ButtonGroup disableElevation variant="contained" color="primary">
-            <Button color="primary" to="/join" component={Link}>
+            <Button style={{ backgroundColor: "#0d0e4a"  }} to="/join" component={Link}>
               Join a Room
             </Button>
-            <Button color="default" to="/info" component={Link}>
+            {/* <Button color="default" to="/info" component={Link}>
               Info
-            </Button>
-            <Button color="secondary" to="/create" component={Link}>
+            </Button> */}
+            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" }} to="/create" component={Link}>
               Create a Room
             </Button>
           </ButtonGroup>

@@ -1,7 +1,18 @@
 from django.urls import path
 from .views import RoomView, CreateRoomView, GetRoom, JoinRoom, UserInRoom, LeaveRoom, UpdateRoom
 
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import include
+from rest_framework import routers
+from .views import UserViewSet , RoomViewSet
+
+router = routers.DefaultRouter()
+router.register('users', UserViewSet)
+router.register('rooms', RoomViewSet)
+
 urlpatterns = [
+    path('',include(router.urls)),
     path('room', RoomView.as_view()),
     path('create-room', CreateRoomView.as_view()),
     path('get-room', GetRoom.as_view()),

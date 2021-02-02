@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import RoomJoinPage from "./RoomJoinPage";
 import CreateRoomPage from "./CreateRoomPage";
 import Room from "./Room";
+import SignUp from "./SignUp";
+import LogIn from "./SignIn";
 import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
 import {
   BrowserRouter as Router,
@@ -54,10 +56,10 @@ export default class HomePage extends Component {
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
           <ButtonGroup  disableElevation variant="contained" color="primary">
-            <Button style={{ backgroundColor: "#0d0e4a" }} to="" component={Link}>
+            <Button style={{ backgroundColor: "#0d0e4a" }} to="/signin" component={Link}>
               Sign In
             </Button>
-            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" }} to="" component={Link}>
+            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" }} to="/signup" component={Link}>
               Sign Up
             </Button>
           </ButtonGroup>
@@ -112,6 +114,8 @@ export default class HomePage extends Component {
           <Route path="/join" component={RoomJoinPage} />
           <Route path="/info" component={Info} />
           <Route path="/create" component={CreateRoomPage} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/signin" component={LogIn} />
           <Route
             path="/room/:roomCode"
             render={(props) => {

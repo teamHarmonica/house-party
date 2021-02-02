@@ -1,13 +1,18 @@
 from django.shortcuts import render
-from rest_framework import generics, status
-from .serializers import RoomSerializer, CreateRoomSerializer, UpdateRoomSerializer
+from rest_framework import generics, status , viewsets
+from .serializers import RoomSerializer, CreateRoomSerializer , UpdateRoomSerializer , UserSerializer
 from .models import Room
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
+from django.contrib.auth.models import User
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
-
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class RoomView(generics.ListAPIView):
     queryset = Room.objects.all()

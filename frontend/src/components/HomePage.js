@@ -12,6 +12,19 @@ import {
 } from "react-router-dom";
 import Info from "./Info";
 
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Musicografi',
+    ].join(','),
+    allVariants: {
+      color: "White"
+    },
+  },});
+
+
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -35,9 +48,11 @@ export default class HomePage extends Component {
     return (
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
+        <ThemeProvider theme={theme}>
           <Typography variant="h3" compact="h3">
             House Party
           </Typography>
+        </ThemeProvider>
         </Grid>
         <Grid item xs={12} align="center">
           <ButtonGroup disableElevation variant="contained" color="primary">

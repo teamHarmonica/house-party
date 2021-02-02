@@ -6,10 +6,11 @@ authors = ["Batool Malkawi <batoolmalkawii@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-Django = "^3.1.5"
+Django = "^3.1.6"
 djangorestframework = "^3.12.2"
 npm = "^0.1.1"
 requests = "^2.25.1"
+django-cors-headers = "^3.7.0"
 
 [tool.poetry.dev-dependencies]
 

@@ -9,22 +9,16 @@ const pages = {
   CREATE: "pages.create",
 };
 
-const theme = createMuiTheme({
-  typography: {
-    fontFamily: 'comic',
-  },
-});
 
 export default function Info(props) {
   const [page, setPage] = useState(pages.JOIN);
 
   function joinInfo() {
-    return "Join page";
+    return "Join a Spotify room and listen to music chosen by your favorite people.";
   }
 
   function createInfo() {
-    return "Create page";
-    // return <CreateRoomPage/>
+    return "Host a Spotify room and share your favorite music with your favorite people.";
   }
 
   useEffect(() => {
@@ -33,15 +27,12 @@ export default function Info(props) {
   });
 
   return (
-    <ThemeProvider theme={theme}>
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
-          <Typography component="h4" variant="h4">
-            What is House Party?
-          </Typography>
+
         </Grid>
         <Grid item xs={12} align="center">
-          <Typography variant="body1">
+          <Typography variant="h5">
             {page === pages.JOIN ? joinInfo() : createInfo()}
           </Typography>
         </Grid>
@@ -64,6 +55,5 @@ export default function Info(props) {
           </Button>
         </Grid> */}
       </Grid>
-    </ThemeProvider>
   );
 }

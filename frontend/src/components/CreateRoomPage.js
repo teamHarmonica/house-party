@@ -91,16 +91,10 @@ export default class CreateRoomPage extends Component {
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
           <Button
-            color="primary"
-            variant="contained"
+          style={{ backgroundColor: "#800515", color:"white", fontWeight:"lighter", width:"130px" , marginTop:"60px"}}            variant="contained"
             onClick={this.handleRoomButtonPressed}
           >
-            Create A Room
-          </Button>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button color="secondary" variant="contained" to="/" component={Link}>
-            Back
+            Host Room
           </Button>
         </Grid>
       </Grid>
@@ -111,7 +105,7 @@ export default class CreateRoomPage extends Component {
     return (
       <Grid item xs={12} align="center">
         <Button
-          color="primary"
+          style={{ backgroundColor: "#800515", color:"white", fontWeight:"lighter", width:"160px" , marginTop:"40px"}}
           variant="contained"
           onClick={this.handleUpdateButtonPressed}
         >
@@ -122,10 +116,14 @@ export default class CreateRoomPage extends Component {
   }
 
   render() {
-    const title = this.props.update ? "Update Room" : "Create a Room";
-
+    const title = this.props.update ? "Update Room" : "Host Room";
     return (
-      <Grid container spacing={1}>
+      <>
+        <span><a href="/"><i class='fas fa-arrow-left' style={{ fontSize: "36px", position:"fixed" , left:"-130px", top:"250px", color:"#0d0e4a"}}></i></a></span>
+        <div  style={{
+            border: '2px solid #0d0e4a', padding:'70px', borderRadius:"7px"
+            }}>
+              <Grid container spacing={1}>
         <Grid item xs={12} align="center">
           <Collapse
             in={this.state.errorMsg != "" || this.state.successMsg != ""}
@@ -152,13 +150,13 @@ export default class CreateRoomPage extends Component {
           </Collapse>
         </Grid>
         <Grid item xs={12} align="center">
-          <Typography component="h4" variant="h4">
+          <Typography style={{ color: "#0d0e4a", fontFamily: "Musicografi", fontSize:70, marginBottom:"50px" }} component="h4" variant="h4">
             {title}
           </Typography>
         </Grid>
         <Grid item xs={12} align="center">
           <FormControl component="fieldset">
-            <FormHelperText>
+            <FormHelperText >
               <div align="center">Guest Control of Playback State</div>
             </FormHelperText>
             <RadioGroup
@@ -167,12 +165,14 @@ export default class CreateRoomPage extends Component {
               onChange={this.handleGuestCanPauseChange}
             >
               <FormControlLabel
+                style={{ color: "#0d0e4a"}}
                 value="true"
                 control={<Radio color="primary" />}
                 label="Play/Pause"
                 labelPlacement="bottom"
               />
               <FormControlLabel
+                style={{ color: "#0d0e4a"}}
                 value="false"
                 control={<Radio color="secondary" />}
                 label="No Control"
@@ -183,8 +183,13 @@ export default class CreateRoomPage extends Component {
         </Grid>
         <Grid item xs={12} align="center">
           <FormControl>
+            <FormHelperText style={{ marginBottom: "10px", marginTop: "25px"}}>
+              <div align="center">Votes Required To Skip Song</div>
+            </FormHelperText>
             <TextField
+              style={{ color: "#0d0e4a"}}
               required={true}
+              variant="outlined"
               type="number"
               onChange={this.handleVotesChange}
               defaultValue={this.state.votesToSkip}
@@ -193,15 +198,15 @@ export default class CreateRoomPage extends Component {
                 style: { textAlign: "center" },
               }}
             />
-            <FormHelperText>
-              <div align="center">Votes Required To Skip Song</div>
-            </FormHelperText>
+
           </FormControl>
         </Grid>
         {this.props.update
           ? this.renderUpdateButtons()
           : this.renderCreateButtons()}
       </Grid>
+      </div>
+      </>
     );
   }
 }

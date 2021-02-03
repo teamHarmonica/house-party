@@ -14,6 +14,9 @@ import {
 } from "react-router-dom";
 import Info from "./Info";
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import LogOut from "./Log";
+
+
 
 export const theme = createMuiTheme({
   overrides: {
@@ -21,10 +24,12 @@ export const theme = createMuiTheme({
       root: {
         "& h1": {
           fontFamily: "Musicografi",
-          color: "White",
-          fontSize: 80,
+          color: "white",
+          fontSize: 100,
         },
-        "& h2": {
+        "& h5": {
+          fontFamily:"'Roboto', 'Helvetica', 'Arial', sans-serif",
+          fontWeight:"lighter",
           color: "White",
         }
       }
@@ -55,7 +60,7 @@ export default class HomePage extends Component {
 
   checktt = ()=>{
     if (localStorage.getItem('token') == undefined){
-      window.location.href = "/signup"
+      window.location.href = "/signin"
     }else{
       window.location.href = "/create"
     }
@@ -63,22 +68,16 @@ export default class HomePage extends Component {
 
 log_out = () => {
   localStorage.removeItem('token');
-  window.location.href = "/signin"
+  window.location.href = "/"
 }
 
   renderHomePage() {
     return (
       <Grid container spacing={3}>
-        <Grid item xs={12} align="center">
+        <Grid item xs={12} align="right">
           <ButtonGroup  disableElevation variant="contained" color="primary">
-            <Button style={{ backgroundColor: "#0d0e4a" }} id = "signin" to="/signin" component={Link}>
+            <Button style={{fontWeight:"lighter" , backgroundColor: "#0d0e4a" , position:"fixed", right:"-300px", top:"-20px"}} id = "signin" to="/signin" component={Link} onClick={ ()=> this.disabled=true}>
               Sign In
-            </Button>
-            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" }} id = "signup" to="/signup" component={Link}>
-              Sign Up
-            </Button>
-            <Button style={{ marginLeft: '1rem', backgroundColor: "#000514"}} id = "logout" onClick={this.log_out}>
-              Log Out
             </Button>
           </ButtonGroup>
         </Grid>
@@ -88,21 +87,16 @@ log_out = () => {
             <h1>House Party</h1>
             <h2><Info /></h2>
           </Typography>
-        </ThemeProvider>
-        </Grid>
-
-        <Grid item xs={12} align="center">
           <ButtonGroup disableElevation variant="contained" color="primary">
-            <Button style={{ backgroundColor: "#0d0e4a"  }} to="/join" component={Link}>
-              Join a Room
+            <Button style={{ backgroundColor: "#0d0e4a", width:"200px",height:"70px", marginTop:"-50px", fontSize:20,fontWeight:"lighter"  }} to="/join" component={Link}>
+              Join Room
             </Button>
-            {/* <Button color="default" to="/info" component={Link}>
-              Info
-            </Button> */}
-            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" }} onClick={this.checktt}>
-              Create a Room
+            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" , marginTop:"-50px", width:"200px",height:"70px", fontSize:20 ,fontWeight:"lighter" }} onClick={this.checktt}>
+              Host Room
             </Button>
           </ButtonGroup>
+        </ThemeProvider>
+
         </Grid>
       </Grid>
     );
@@ -134,6 +128,7 @@ log_out = () => {
           <Route path="/create" component={CreateRoomPage} />
           <Route path="/signup" component={SignUp} />
           <Route path="/signin" component={LogIn} />
+          <Route path="/home" component={LogOut} />
           <Route
             path="/room/:roomCode"
             render={(props) => {

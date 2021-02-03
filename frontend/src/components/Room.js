@@ -104,6 +104,7 @@ export default class Room extends Component {
 
   renderSettings() {
     return (
+
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
           <CreateRoomPage
@@ -114,15 +115,6 @@ export default class Room extends Component {
             updateCallback={this.getRoomDetails}
           />
         </Grid>
-        <Grid item xs={12} align="center">
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => this.updateShowSettings(false)}
-          >
-            Close
-          </Button>
-        </Grid>
       </Grid>
     );
   }
@@ -132,7 +124,7 @@ export default class Room extends Component {
       <Grid item xs={12} align="center">
         <Button
           variant="contained"
-          color="primary"
+          style={{ backgroundColor: "#0d0e4a", color:"white", fontWeight:"lighter", width:"130px" , marginTop:"20px"}}
           onClick={() => this.updateShowSettings(true)}
         >
           Settings
@@ -142,28 +134,33 @@ export default class Room extends Component {
   }
 
   render() {
+    
     if (this.state.showSettings) {
       return this.renderSettings();
     }
     return (
-      <Grid container spacing={1}>
-        <Grid item xs={12} align="center">
-          <Typography variant="h4" component="h4">
-            Code: {this.roomCode}
-          </Typography>
+      <div  style={{
+        border: '2px solid #0d0e4a', padding:'70px', borderRadius:"7px"
+        }}>
+        <Grid container spacing={1}>
+          <Grid item xs={12} align="center">
+            <Typography variant="h4" component="h4" style={{ marginBottom:"50px", color:"white", fontWeight:"lighter"}}>
+              <div style={{ marginBottom:"50px", color:"#0d0e4a", fontFamily:"Musicografi", fontSize:70}}>Spotify Room</div>  Code: {this.roomCode}
+            </Typography>
+          </Grid>
+          <MusicPlayer {...this.state.song} />
+          {this.state.isHost ? this.renderSettingsButton() : null}
+          <Grid item xs={12} align="center">
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#800515", color:"white", fontWeight:"lighter", width:"130px" , marginTop:"10px"}}
+              onClick={this.leaveButtonPressed}
+            >
+              Leave Room
+            </Button>
+          </Grid>
         </Grid>
-        <MusicPlayer {...this.state.song} />
-        {this.state.isHost ? this.renderSettingsButton() : null}
-        <Grid item xs={12} align="center">
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={this.leaveButtonPressed}
-          >
-            Leave Room
-          </Button>
-        </Grid>
-      </Grid>
+      </div>
     );
   }
 }

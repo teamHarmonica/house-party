@@ -15,39 +15,36 @@ export default class RoomJoinPage extends Component {
 
   render() {
     return (
-      <Grid container spacing={1}>
-        <Grid item xs={12} align="center">
-          <Typography variant="h4" component="h4">
-            Join a Room
-          </Typography>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <TextField
-            error={this.state.error}
-            label="Code"
-            placeholder="Enter a Room Code"
-            value={this.state.roomCode}
-            helperText={this.state.error}
-            variant="outlined"
-            onChange={this.handleTextFieldChange}
-          />
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.roomButtonPressed}
-          >
-            Enter Room
-          </Button>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button variant="contained" color="secondary" to="/" component={Link}>
-            Back
-          </Button>
-        </Grid>
-      </Grid>
-    );
+      <>
+        <span><a href="/"><i class='fas fa-arrow-left' style={{ fontSize: "36px", position:"fixed" , left:"-130px", top:"250px", color:"#0d0e4a"}}></i></a></span>
+        <div  style={{
+            border: '2px solid #0d0e4a', padding:'70px', borderRadius:"7px"
+            }}>
+        
+            <h1 style={{ color: "#0d0e4a", fontFamily: "Musicografi", fontSize:70, marginBottom:"50px" }}> Join Room</h1>               
+            <TextField
+              style={{ marginBottom: "75px", width:"320px"}}
+              error={this.state.error}
+              label="Code"
+              placeholder="Enter a Room Code"
+              value={this.state.roomCode}
+              helperText={this.state.error}
+              variant="outlined"
+              onChange={this.handleTextFieldChange}
+            />
+            <Grid item xs={12} align="center">
+              <Button
+                variant="contained"
+                style={{ backgroundColor: "#800515", color:"white", fontWeight:"lighter", width:"80px" , marginTop:"-20px"}}
+                onClick={this.roomButtonPressed}
+              >
+                Join
+              </Button>
+            </Grid>
+        </div>
+      </>
+  );
+
   }
 
   handleTextFieldChange(e) {

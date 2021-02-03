@@ -33,6 +33,7 @@ export const theme = createMuiTheme({
 });
 
 export default class HomePage extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -51,6 +52,7 @@ export default class HomePage extends Component {
       });
   }
 
+
   checktt = ()=>{
     if (localStorage.getItem('token') == undefined){
       window.location.href = "/signup"
@@ -59,16 +61,24 @@ export default class HomePage extends Component {
     }
   }
 
+log_out = () => {
+  localStorage.removeItem('token');
+  window.location.href = "/signin"
+}
+
   renderHomePage() {
     return (
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
           <ButtonGroup  disableElevation variant="contained" color="primary">
-            <Button style={{ backgroundColor: "#0d0e4a" }} to="/signin" component={Link}>
+            <Button style={{ backgroundColor: "#0d0e4a" }} id = "signin" to="/signin" component={Link}>
               Sign In
             </Button>
-            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" }} to="/signup" component={Link}>
+            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" }} id = "signup" to="/signup" component={Link}>
               Sign Up
+            </Button>
+            <Button style={{ marginLeft: '1rem', backgroundColor: "#000514"}} id = "logout" onClick={this.log_out}>
+              Log Out
             </Button>
           </ButtonGroup>
         </Grid>

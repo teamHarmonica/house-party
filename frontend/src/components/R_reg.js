@@ -16,7 +16,7 @@ class SignUp extends Component {
         .then(
             data => {
                 console.log(data.token);
-
+                window.location.href = "/signin"
             }
         ).catch(error => console.error("here",error))
 

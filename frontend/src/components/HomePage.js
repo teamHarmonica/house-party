@@ -51,6 +51,14 @@ export default class HomePage extends Component {
       });
   }
 
+  checktt = ()=>{
+    if (localStorage.getItem('token') == undefined){
+      window.location.href = "/signup"
+    }else{
+      window.location.href = "/create"
+    }
+  }
+
   renderHomePage() {
     return (
       <Grid container spacing={3}>
@@ -81,7 +89,7 @@ export default class HomePage extends Component {
             {/* <Button color="default" to="/info" component={Link}>
               Info
             </Button> */}
-            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" }} to="/create" component={Link}>
+            <Button style={{ marginLeft: '1rem', backgroundColor: "#800515" }} onClick={this.checktt}>
               Create a Room
             </Button>
           </ButtonGroup>

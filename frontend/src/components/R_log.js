@@ -16,7 +16,10 @@ class Login extends Component {
         .then(
             data => {
                 this.props.userLogin(data.token)
-
+                if (data.token){
+                    window.location.href = "/"
+                }
+             
             }
         ).catch(error => console.error("here",error))
     

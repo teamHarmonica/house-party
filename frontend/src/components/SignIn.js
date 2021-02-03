@@ -8,6 +8,7 @@ function App() {
   const userLogin = (tok) =>{
     setToken(tok)
     console.log(tok);
+    localStorage.setItem('token' , tok)
     
   }
 
